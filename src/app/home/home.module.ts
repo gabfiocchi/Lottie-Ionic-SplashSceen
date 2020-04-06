@@ -6,6 +6,15 @@ import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
 
+import { LottieModule } from 'ngx-lottie';
+// import player from 'lottie-web';
+
+// Note we need a separate function as it's required
+// by the AOT compiler.
+export function playerFactory() {
+  return import('lottie-web');
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -16,7 +25,11 @@ import { HomePage } from './home.page';
         path: '',
         component: HomePage
       }
-    ])
+    ]),
+    LottieModule.forRoot({ 
+      player: playerFactory,
+      useCache: true
+    })
   ],
   declarations: [HomePage]
 })

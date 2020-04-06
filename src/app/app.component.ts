@@ -23,14 +23,11 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-
-      setTimeout(() => {
-        this.lottieSplashScreen.hide()
-      }, 4000);
-    
-
-      this.statusBar.styleDefault();
-      // this.splashScreen.hide();  // WE DONE NEED THIS 
+      if (this.platform.is('cordova')) {
+        // this.splashScreen.hide();
+        this.lottieSplashScreen.hide();
+        this.statusBar.styleDefault();
+      }
     });
   }
 }
